@@ -7,46 +7,40 @@
 #include <string.h>
 #include <unistd.h>
 
-#include <string>
-#include <iostream>
-
-#define BUFFER_SIZE 16
+#define BUFFER_SIZE 256
 
 int main() {
- int sock;
- struct sockaddr_in addr;
+/* ポート番号、ソケット */
+ unsigned short port = 9876;
+ int recvSocket;
 
- char buf[BUFFER_SIZE];
+/* sockaddr_in 構造体 */
+ struct sockaddr_in recvSockAddr;
 
- sock = socket(AF_INET, SOCK_DGRAM, 0);
+/* 各種パラメータ */
+ int status;
+ int numrcv;
+ char buffer[BUFFER_SIZE];
+ unsigned long on = 1;
 
- addr.sin_family = AF_INET;
- addr.sin_port = htons(12345);
- addr.sin_addr.s_addr = INADDR_ANY;
- addr.sin_len = sizeof(addr);
+/* sockaddr_in 構造体のセット */
+ memset(&recvSockAddr, 0, sizeof(recvSockAddr));
+ recvSockAddr.sin_port = htons(port);
+ recvSockAddr.sin_family = AF_INET;
+ recvSockAddr.sin_addr.s_addr = htonl(INADDR_ANY);
 
- bind(sock, (struct sockaddr *)&addr, sizeof(addr));
+/* ソケット生成 */
+ recvSocket = socket(AF_INET, SOCK_DGRAM, 0);
 
- memset(buf, 0, sizeof(buf));
+ /* バインド */
+ status = bind(recvSocket, (const struct sockaddr *) &recvSockAddr, sizeof(recvSockAddr));
 
- int i = 0;
- while(i<10){
-  recv(sock, buf, sizeof(buf), 0);
-  std::string str(BUFFER_SIZE/4, ' ');
-
-  for(int j=0; j<BUFFER_SIZE/4; j++) str[j-0] = buf[j];
-  std::cout << "A : " << str << std::endl;
-  for(int j=BUFFER_SIZE/4; j<BUFFER_SIZE/3; j++) str[j-(BUFFER_SIZE/4)] = buf[j];
-  std::cout << "B : " << str << std::endl;
-  for(int j=BUFFER_SIZE/3; j<BUFFER_SIZE/2; j++) str[j-(BUFFER_SIZE/3)] = buf[j];
-  std::cout << "C : " << str << std::endl;
-  for(int j=BUFFER_SIZE/2; j<BUFFER_SIZE/1; j++) str[j-(BUFFER_SIZE/2)] = buf[j];
-  std::cout << "D : " << str << std::endl;
-  i++;
+/* パケット受信 */
+ while(1) {
+   numrcv = recvfrom(recvSocket, buffer, BUFFER_SIZE, 0, NULL, NULL);
+   if(numrcv == -1) { status = close(recvSocket); break; }
+   printf("received: %s\n", buffer);
  }
- close(sock);
-
- return 0;
 }
 
 
