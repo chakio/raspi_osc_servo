@@ -78,26 +78,39 @@ int main() {
  //dio.open();
 
  // lamp on -> off
- command = dio.getDigitalOutPutCommand("800000");
- for(int i=0; i<1; i++) dioList[i].sendCommand(command);
+ for(int i=0; i<1; i++) {
+	 command = dioList[i].getDigitalOutPutCommand("800000");
+   dioList[i].sendCommand(command);
+ }
  //dio.sendCommand(command);
  sleep(2);
- command = dio.getDigitalOutPutCommand("000000");
- for(int i=0; i<1; i++) dioList[i].sendCommand(command);
+ for(int i=0; i<1; i++) {
+	 command = dioList[i].getDigitalOutPutCommand("000000");
+	 dioList[i].sendCommand(command);
+ }
  sleep(2);
 
  // pwm init
- command = dio.getPWMInitializeCommand(3,20000);
- for(int i=0; i<1; i++) dioList[i].sendCommand(command);
+ for(int i=0; i<1; i++) {
+	 command = dioList[i].getPWMInitializeCommand(3,20000);
+	 dioList[i].sendCommand(command);
+ }
+
 
  // pwm init pos
- for(int i=0; i<PWM_CHANNEL_NUM; i++) values.push_back(1450);
- command = dio.getPWMPalseChangeCommand(values);
- for(int i=0; i<1; i++) dioList[i].sendCommand(command);
+ for(int i=0; i<1; i++) {
+	 for(int j=0; j<PWM_CHANNEL_NUM; j++) values.push_back(1450);
+	 command = dioList[i].getPWMPalseChangeCommand(values);
+	 dioList[i].sendCommand(command);
+ }
+
 
  // start
- command = dio.getPWMStartCommand();
- for(int i=0; i<1; i++) dioList[i].sendCommand(command);
+ for(int i=0; i<1; i++) {
+	 command = dioList[i].getPWMStartCommand();
+	 dioList[i].sendCommand(command);
+ }
+
 
 
 
@@ -107,12 +120,18 @@ int main() {
    if(numrcv == -1) { status = close(recvSocket); break; }
    printf("received: %s\n", buffer);
 
-	 command = buffer;
-	 for(int i=0; i<1; i++) dioList[i].sendCommand(command);
+	 for(int i=0; i<1; i++) {
+		 command = buffer;
+		 dioList[i].sendCommand(command);
+	 }
+
  }
  // stop
- command = dio.getPWMStopCommand();
- for(int i=0; i<1; i++) dioList[i].sendCommand(command);
+ for(int i=0; i<1; i++) {
+	 command = dioList[i].getPWMStopCommand();
+	 dioList[i].sendCommand(command);
+ }
+
 
  // device close
  //dio.close();
