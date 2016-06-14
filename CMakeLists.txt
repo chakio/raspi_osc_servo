@@ -34,7 +34,8 @@ set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_BUILD_TYPE Release)
 
 
-include_directories(/usr/local/include ${PROJECT_SOURCE_DIR}/lib/oscpack)
+include_directories(/usr/local/include)
+#include_directories(${PROJECT_SOURCE_DIR}/lib/oscpack)
 link_directories(/usr/local/lib)
 
 
