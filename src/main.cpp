@@ -90,13 +90,6 @@ int main() {
  command = dio.getPWMStartCommand();
  dio.sendCommand(command);
 
- // stop
- command = dio.getPWMStopCommand();
- dio.sendCommand(command);
-
- // device close
- dio.close();
-
 
 
  // program loop
@@ -104,9 +97,20 @@ int main() {
    numrcv = recvfrom(recvSocket, buffer, BUFFER_SIZE, 0, NULL, NULL);
    if(numrcv == -1) { status = close(recvSocket); break; }
    printf("received: %s\n", buffer);
+
+	 command = buffer;
+	 dio.sendCommand(command);
  }
 }
 
+
+
+// stop
+command = dio.getPWMStopCommand();
+dio.sendCommand(command);
+
+// device close
+dio.close();
 
 
 
