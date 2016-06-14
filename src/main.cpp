@@ -21,7 +21,22 @@
 
 
 
+#include <signal.h>
+int gShutoff;
+
+
+
+void ctlc(int aN) {
+	gShutoff = 1;
+	signal( SIGINT, NULL );
+}
+
+
+
 int main() {
+	gShutoff = 0;
+  signal( SIGINT, ctrlc );
+
 
  unsigned short port = 9876;
  int recvSocket;
@@ -84,9 +99,8 @@ int main() {
 
 
 
-
-/* パケット受信 */
- while(1) {
+ // program loop
+ while(!gShutoff) {
    numrcv = recvfrom(recvSocket, buffer, BUFFER_SIZE, 0, NULL, NULL);
    if(numrcv == -1) { status = close(recvSocket); break; }
    printf("received: %s\n", buffer);
