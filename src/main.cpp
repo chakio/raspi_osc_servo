@@ -101,16 +101,13 @@ int main() {
 	 command = buffer;
 	 dio.sendCommand(command);
  }
+ // stop
+ command = dio.getPWMStopCommand();
+ dio.sendCommand(command);
+
+ // device close
+ dio.close();
 }
-
-
-
-// stop
-command = dio.getPWMStopCommand();
-dio.sendCommand(command);
-
-// device close
-dio.close();
 
 
 
