@@ -62,33 +62,42 @@ int main() {
 
 
  // dio instance
- Dacs1500rcp24 dio(0);
+ std::vector<Dacs1500rcp24> dioList;
+ //Dacs1500rcp24 dio(0);
  std::string command;
  std::vector<int> values;
 
+
+	for(int i=0; i<1; i++){
+		Dacs1500rcp24 dio(i);
+		dioList.push_back(dio);
+	}
+
  // device open
- dio.open();
+ for(int i=0; i<1; i++) dioList[i].open();
+ //dio.open();
 
  // lamp on -> off
  command = dio.getDigitalOutPutCommand("800000");
- dio.sendCommand(command);
+ for(int i=0; i<1; i++) dioList[i].sendCommand(command);
+ //dio.sendCommand(command);
  sleep(2);
  command = dio.getDigitalOutPutCommand("000000");
- dio.sendCommand(command);
+ for(int i=0; i<1; i++) dioList[i].sendCommand(command);
  sleep(2);
 
  // pwm init
  command = dio.getPWMInitializeCommand(3,20000);
- dio.sendCommand(command);
+ for(int i=0; i<1; i++) dioList[i].sendCommand(command);
 
  // pwm init pos
  for(int i=0; i<PWM_CHANNEL_NUM; i++) values.push_back(1450);
  command = dio.getPWMPalseChangeCommand(values);
- dio.sendCommand(command);
+ for(int i=0; i<1; i++) dioList[i].sendCommand(command);
 
  // start
  command = dio.getPWMStartCommand();
- dio.sendCommand(command);
+ for(int i=0; i<1; i++) dioList[i].sendCommand(command);
 
 
 
@@ -99,15 +108,25 @@ int main() {
    printf("received: %s\n", buffer);
 
 	 command = buffer;
-	 dio.sendCommand(command);
+	 for(int i=0; i<1; i++) dioList[i].sendCommand(command);
  }
  // stop
  command = dio.getPWMStopCommand();
- dio.sendCommand(command);
+ for(int i=0; i<1; i++) dioList[i].sendCommand(command);
 
  // device close
- dio.close();
+ //dio.close();
+ for(int i=0; i<1; i++) dioList[i].close();
 }
+
+
+
+
+
+
+
+
+
 
 
 
