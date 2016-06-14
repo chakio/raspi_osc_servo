@@ -26,7 +26,7 @@ int gShutoff;
 
 
 
-void ctlc(int aN) {
+void ctrlc(int aN) {
 	gShutoff = 1;
 	signal( SIGINT, NULL );
 }
