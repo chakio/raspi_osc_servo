@@ -137,6 +137,12 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                       << val20 << " " << val21 << " " << val22 << " " << val23 << " "
                       << "\n";
 
+            for(int i=0; i<1; i++) {
+                for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = 1450;
+                command = dioList[i].getPWMPalseChangeCommand(values);
+                dioList[i].sendCommand(command);
+            }
+
         }  else if( strcmp( m.AddressPattern(), "/deviceD" ) == 0 ){
             osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
             osc::int32 val0, val1, val2, val3, val4, val5,
@@ -157,6 +163,12 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                       << val16 << " " << val17 << " " << val18 << " " << val19 << " "
                       << val20 << " " << val21 << " " << val22 << " " << val23 << " "
                       << "\n";
+
+            for(int i=0; i<1; i++) {
+                for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = 500;
+                command = dioList[i].getPWMPalseChangeCommand(values);
+                dioList[i].sendCommand(command);
+            }
         }
     } catch( osc::Exception& e ) {
         std::cout << "error while parsing message: "

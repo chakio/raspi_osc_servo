@@ -11,9 +11,7 @@ int main(int argc, char* argv[])
 
     listener.dioStart();
 
-    UdpListeningReceiveSocket s(
-                IpEndpointName( IpEndpointName::ANY_ADDRESS, PORT ),
-                &listener );
+    UdpListeningReceiveSocket s( IpEndpointName( IpEndpointName::ANY_ADDRESS, PORT ), &listener );
     std::cout << "press ctrl-c to end" << std::endl;
     s.RunUntilSigInt();
 
@@ -21,6 +19,15 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+
+
+
+
+
+
+
+
+
 
 
 
