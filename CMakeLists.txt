@@ -42,5 +42,5 @@ link_directories(/usr/local/lib)
 #add_executable(test src/main.cpp src/Dio.cpp)
 #target_link_libraries(test ftd2xx)
 
-add_executable(test src/main.cpp src/dacs1500rcp24.cpp)
+add_executable(test src/main.cpp src/dacs1500rcp24.cpp src/oscListener.cpp)
 target_link_libraries(test ftd2xx oscpack)
