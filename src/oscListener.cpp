@@ -73,6 +73,10 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                     >> val12 >> val13 >> val14 >> val15 >> val16 >> val17
                     >> val18 >> val19 >> val20 >> val21 >> val22 >> val23
                     >> osc::EndMessage;
+
+            vector<int> valList;
+            valList.push_back((int)val1);
+
             std::cout << "received '/deviceA' message with arguments: "
                       << val0 << " " << val1 << " " << val2 << " " << val3 << " "
                       << val4 << " " << val5 << " " << val6 << " " << val7 << " "
