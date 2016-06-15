@@ -1,15 +1,37 @@
-#include <iostream>
-#include <vector>
-#include <string>
-#include <unistd.h>
+//#include <iostream>
+//#include <vector>
+//#include <string>
+//#include <unistd.h>
+//#include "dacs1500rcp24.hpp"
+
+
+
 #include "oscListener.hpp"
-#include "dacs1500rcp24.hpp"
 
 
 #define PORT 7000
-#define PWM_CHANNEL_NUM 24
 
 
+int main(int argc, char* argv[])
+{
+    raspiTest listener;
+
+    listener.dioStart();
+
+    UdpListeningReceiveSocket s(
+                IpEndpointName( IpEndpointName::ANY_ADDRESS, PORT ),
+                &listener );
+    std::cout << "press ctrl-c to end" << std::endl;
+    s.RunUntilSigInt();
+
+    listener.dioStop();
+
+    return 0;
+}
+
+
+
+/*
 int main(int argc, char* argv[])
 {
     // dio instance
@@ -87,6 +109,7 @@ int main(int argc, char* argv[])
 
     return 0;
 }
+*/
 
 
 
