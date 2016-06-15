@@ -28,12 +28,12 @@ protected:
                      >> val18 >> val19 >> val20 >> val21 >> val22 >> val23
                      >> osc::EndMessage;
                 std::cout << "received '/deviceA' message with arguments: "
-                    << a0 << " " << a1 << " " << a2 << " " << a3 << " "
-                    << a4 << " " << a5 << " " << a6 << " " << a7 << " "
-                    << a8 << " " << a9 << " " << a10 << " " << a11 << " "
-                    << a12 << " " << a13 << " " << a14 << " " << a15 << " "
-                    << a16 << " " << a17 << " " << a18 << " " << a19 << " "
-                    << a20 << " " << a21 << " " << a22 << " " << a23 << " "
+                    << val0 << " " << val1 << " " << val2 << " " << val3 << " "
+                    << val4 << " " << val5 << " " << val6 << " " << val7 << " "
+                    << val8 << " " << val9 << " " << val10 << " " << val11 << " "
+                    << val12 << " " << val13 << " " << val14 << " " << val15 << " "
+                    << val16 << " " << val17 << " " << val18 << " " << val19 << " "
+                    << val20 << " " << val21 << " " << val22 << " " << val23 << " "
                     << "\n";
 
             } else if( strcmp( m.AddressPattern(), "/deviceB" ) == 0 ){
@@ -49,13 +49,13 @@ protected:
                    >> val18 >> val19 >> val20 >> val21 >> val22 >> val23
                    >> osc::EndMessage;
               std::cout << "received '/deviceB' message with arguments: "
-                  << a0 << " " << a1 << " " << a2 << " " << a3 << " "
-                  << a4 << " " << a5 << " " << a6 << " " << a7 << " "
-                  << a8 << " " << a9 << " " << a10 << " " << a11 << " "
-                  << a12 << " " << a13 << " " << a14 << " " << a15 << " "
-                  << a16 << " " << a17 << " " << a18 << " " << a19 << " "
-                  << a20 << " " << a21 << " " << a22 << " " << a23 << " "
-                  << "\n";
+                << val0 << " " << val1 << " " << val2 << " " << val3 << " "
+                << val4 << " " << val5 << " " << val6 << " " << val7 << " "
+                << val8 << " " << val9 << " " << val10 << " " << val11 << " "
+                << val12 << " " << val13 << " " << val14 << " " << val15 << " "
+                << val16 << " " << val17 << " " << val18 << " " << val19 << " "
+                << val20 << " " << val21 << " " << val22 << " " << val23 << " "
+                << "\n";
 
             } else if( strcmp( m.AddressPattern(), "/deviceC" ) == 0 ){
               osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
@@ -70,13 +70,13 @@ protected:
                    >> val18 >> val19 >> val20 >> val21 >> val22 >> val23
                    >> osc::EndMessage;
               std::cout << "received '/deviceC' message with arguments: "
-                  << a0 << " " << a1 << " " << a2 << " " << a3 << " "
-                  << a4 << " " << a5 << " " << a6 << " " << a7 << " "
-                  << a8 << " " << a9 << " " << a10 << " " << a11 << " "
-                  << a12 << " " << a13 << " " << a14 << " " << a15 << " "
-                  << a16 << " " << a17 << " " << a18 << " " << a19 << " "
-                  << a20 << " " << a21 << " " << a22 << " " << a23 << " "
-                  << "\n";
+                << val0 << " " << val1 << " " << val2 << " " << val3 << " "
+                << val4 << " " << val5 << " " << val6 << " " << val7 << " "
+                << val8 << " " << val9 << " " << val10 << " " << val11 << " "
+                << val12 << " " << val13 << " " << val14 << " " << val15 << " "
+                << val16 << " " << val17 << " " << val18 << " " << val19 << " "
+                << val20 << " " << val21 << " " << val22 << " " << val23 << " "
+                << "\n";
 
             }  else if( strcmp( m.AddressPattern(), "/deviceD" ) == 0 ){
               osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
@@ -91,13 +91,13 @@ protected:
                    >> val18 >> val19 >> val20 >> val21 >> val22 >> val23
                    >> osc::EndMessage;
               std::cout << "received '/deviceD' message with arguments: "
-                  << a0 << " " << a1 << " " << a2 << " " << a3 << " "
-                  << a4 << " " << a5 << " " << a6 << " " << a7 << " "
-                  << a8 << " " << a9 << " " << a10 << " " << a11 << " "
-                  << a12 << " " << a13 << " " << a14 << " " << a15 << " "
-                  << a16 << " " << a17 << " " << a18 << " " << a19 << " "
-                  << a20 << " " << a21 << " " << a22 << " " << a23 << " "
-                  << "\n";
+                << val0 << " " << val1 << " " << val2 << " " << val3 << " "
+                << val4 << " " << val5 << " " << val6 << " " << val7 << " "
+                << val8 << " " << val9 << " " << val10 << " " << val11 << " "
+                << val12 << " " << val13 << " " << val14 << " " << val15 << " "
+                << val16 << " " << val17 << " " << val18 << " " << val19 << " "
+                << val20 << " " << val21 << " " << val22 << " " << val23 << " "
+                << "\n";
                 }
         } catch( osc::Exception& e ) {
             // any parsing errors such as unexpected argument types, or
