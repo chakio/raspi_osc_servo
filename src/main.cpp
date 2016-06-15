@@ -1,5 +1,9 @@
 #include <iostream>
+#include <vector>
+#include <string>
+#include <unistd.h>
 #include "oscListener.hpp"
+#include "dacs1500rcp24.hpp"
 
 
 #define PORT 7000
@@ -7,14 +11,54 @@
 
 int main(int argc, char* argv[])
 {
+    // dio instance
+    std::vector<Dacs1500rcp24> dioList;
+    std::string command;
+    std::vector<int> values;
+
+
+    // init dio
+    for(int i=0; i<1; i++){
+        Dacs1500rcp24 dio(i);
+        dioList.push_back(dio);
+    }
+
+
+    // device open
+    for(int i=0; i<1; i++) dioList[i].open();
+
+
+    // lamp on -> off
+    for(int i=0; i<1; i++) {
+        command = dioList[i].getDigitalOutPutCommand("800000");
+      dioList[i].sendCommand(command);
+    }
+    sleep(2);
+    for(int i=0; i<1; i++) {
+        command = dioList[i].getDigitalOutPutCommand("000000");
+        dioList[i].sendCommand(command);
+    }
+    sleep(2);
+
+
+    // osc setup
     ExamplePacketListener listener;
     UdpListeningReceiveSocket s(
                 IpEndpointName( IpEndpointName::ANY_ADDRESS, PORT ),
                 &listener );
-
-    std::cout << "press ctrl-c to end\n";
-
+    std::cout << "press ctrl-c to end" << std::endl;
     s.RunUntilSigInt();
+
+
+    // stop
+    for(int i=0; i<1; i++) {
+        command = dioList[i].getPWMStopCommand();
+        dioList[i].sendCommand(command);
+    }
+
+
+    // device close
+    for(int i=0; i<1; i++) dioList[i].close();
 
     return 0;
 }
