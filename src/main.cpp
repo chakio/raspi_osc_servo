@@ -1,7 +1,4 @@
 #include <iostream>
-#include "oscpack/osc/OscReceivedElements.h"
-#include "oscpack/osc/OscPacketListener.h"
-#include "oscpack/ip/UdpSocket.h"
 #include "oscListener.hpp"
 
 
