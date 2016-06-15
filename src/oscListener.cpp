@@ -121,27 +121,17 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 
         } else if( strcmp( m.AddressPattern(), "/deviceB" ) == 0 ){
             osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-            osc::int32 val0, val1, val2, val3, val4, val5,
-                    val6, val7, val8, val9, val10, val11,
-                    val12, val13, val14, val15, val16, val17,
-                    val18, val19, val20, val21, val22, val23;
 
-            args >> val0 >> val1 >> val2 >> val3 >> val4 >> val5
-                    >> val6 >> val7 >> val8 >> val9 >> val10 >> val11
-                    >> val12 >> val13 >> val14 >> val15 >> val16 >> val17
-                    >> val18 >> val19 >> val20 >> val21 >> val22 >> val23
+            args >> oscValues[0] >> oscValues[1] >> oscValues[2] >> oscValues[3]
+                    >> oscValues[4] >> oscValues[5] >> oscValues[6] >> oscValues[7]
+                    >> oscValues[8] >> oscValues[9] >> oscValues[10] >> oscValues[11]
+                    >> oscValues[12] >> oscValues[13] >> oscValues[14] >> oscValues[15]
+                    >> oscValues[16] >> oscValues[17] >> oscValues[18] >> oscValues[19]
+                    >> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
                     >> osc::EndMessage;
-            std::cout << "received '/deviceB' message with arguments: "
-                      << val0 << " " << val1 << " " << val2 << " " << val3 << " "
-                      << val4 << " " << val5 << " " << val6 << " " << val7 << " "
-                      << val8 << " " << val9 << " " << val10 << " " << val11 << " "
-                      << val12 << " " << val13 << " " << val14 << " " << val15 << " "
-                      << val16 << " " << val17 << " " << val18 << " " << val19 << " "
-                      << val20 << " " << val21 << " " << val22 << " " << val23 << " "
-                      << "\n";
 
             for(int i=0; i<1; i++) {
-                for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = 500;
+                for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = (int)oscValues[j];
                 command = dioList[i].getPWMPalseChangeCommand(values);
                 dioList[i].sendCommand(command);
             }
@@ -165,27 +155,17 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 
         }  else if( strcmp( m.AddressPattern(), "/deviceD" ) == 0 ){
             osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
-            osc::int32 val0, val1, val2, val3, val4, val5,
-                    val6, val7, val8, val9, val10, val11,
-                    val12, val13, val14, val15, val16, val17,
-                    val18, val19, val20, val21, val22, val23;
 
-            args >> val0 >> val1 >> val2 >> val3 >> val4 >> val5
-                    >> val6 >> val7 >> val8 >> val9 >> val10 >> val11
-                    >> val12 >> val13 >> val14 >> val15 >> val16 >> val17
-                    >> val18 >> val19 >> val20 >> val21 >> val22 >> val23
+            args >> oscValues[0] >> oscValues[1] >> oscValues[2] >> oscValues[3]
+                    >> oscValues[4] >> oscValues[5] >> oscValues[6] >> oscValues[7]
+                    >> oscValues[8] >> oscValues[9] >> oscValues[10] >> oscValues[11]
+                    >> oscValues[12] >> oscValues[13] >> oscValues[14] >> oscValues[15]
+                    >> oscValues[16] >> oscValues[17] >> oscValues[18] >> oscValues[19]
+                    >> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
                     >> osc::EndMessage;
-            std::cout << "received '/deviceD' message with arguments: "
-                      << val0 << " " << val1 << " " << val2 << " " << val3 << " "
-                      << val4 << " " << val5 << " " << val6 << " " << val7 << " "
-                      << val8 << " " << val9 << " " << val10 << " " << val11 << " "
-                      << val12 << " " << val13 << " " << val14 << " " << val15 << " "
-                      << val16 << " " << val17 << " " << val18 << " " << val19 << " "
-                      << val20 << " " << val21 << " " << val22 << " " << val23 << " "
-                      << "\n";
 
             for(int i=0; i<1; i++) {
-                for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = 500;
+                for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = (int)oscValues[j];
                 command = dioList[i].getPWMPalseChangeCommand(values);
                 dioList[i].sendCommand(command);
             }
