@@ -7,6 +7,7 @@
 
 
 #define PORT 7000
+#define PWM_CHANNEL_NUM 2
 
 
 int main(int argc, char* argv[])
