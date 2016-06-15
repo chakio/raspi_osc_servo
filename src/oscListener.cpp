@@ -74,30 +74,31 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                     >> val18 >> val19 >> val20 >> val21 >> val22 >> val23
                     >> osc::EndMessage;
 
-            valList.push_back((int)val0);
-            valList.push_back((int)val1);
-            valList.push_back((int)val2);
-            valList.push_back((int)val3);
-            valList.push_back((int)val4);
-            valList.push_back((int)val5);
-            valList.push_back((int)val6);
-            valList.push_back((int)val7);
-            valList.push_back((int)val8);
-            valList.push_back((int)val9);
-            valList.push_back((int)val10);
-            valList.push_back((int)val11);
-            valList.push_back((int)val12);
-            valList.push_back((int)val13);
-            valList.push_back((int)val14);
-            valList.push_back((int)val15);
-            valList.push_back((int)val16);
-            valList.push_back((int)val17);
-            valList.push_back((int)val18);
-            valList.push_back((int)val19);
-            valList.push_back((int)val20);
-            valList.push_back((int)val21);
-            valList.push_back((int)val22);
-            valList.push_back((int)val23);
+            values[0] = (int)val0;
+            values[1] = (int)val1;
+            values[2] = (int)val2;
+            values[3] = (int)val3;
+            values[4] = (int)val4;
+            values[5] = (int)val5;
+            values[6] = (int)val6;
+            values[7] = (int)val7;
+            values[8] = (int)val8;
+            values[9] = (int)val9;
+            values[10] = (int)val10;
+            values[11] = (int)val11;
+            values[12] = (int)val12;
+            values[13] = (int)val13;
+            values[14] = (int)val14;
+            values[15] = (int)val15;
+            values[16] = (int)val16;
+            values[17] = (int)val17;
+            values[18] = (int)val18;
+            values[19] = (int)val19;
+            values[20] = (int)val20;
+            values[21] = (int)val21;
+            values[22] = (int)val22;
+            values[23] = (int)val23;
+
 
             std::cout << "received '/deviceA' message with arguments: "
                       << val0 << " " << val1 << " " << val2 << " " << val3 << " "
@@ -109,8 +110,7 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                       << "\n";
 
             for(int i=0; i<1; i++) {
-                //for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = valList[j];
-                command = dioList[i].getPWMPalseChangeCommand(valList);
+                command = dioList[i].getPWMPalseChangeCommand(values);
                 dioList[i].sendCommand(command);
                 valList.clear();
             }
