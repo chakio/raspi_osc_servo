@@ -74,8 +74,30 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                     >> val18 >> val19 >> val20 >> val21 >> val22 >> val23
                     >> osc::EndMessage;
 
-            std::vector<int> valList;
+            valList.push_back((int)val0);
             valList.push_back((int)val1);
+            valList.push_back((int)val2);
+            valList.push_back((int)val3);
+            valList.push_back((int)val4);
+            valList.push_back((int)val5);
+            valList.push_back((int)val6);
+            valList.push_back((int)val7);
+            valList.push_back((int)val8);
+            valList.push_back((int)val9);
+            valList.push_back((int)val10);
+            valList.push_back((int)val11);
+            valList.push_back((int)val12);
+            valList.push_back((int)val13);
+            valList.push_back((int)val14);
+            valList.push_back((int)val15);
+            valList.push_back((int)val16);
+            valList.push_back((int)val17);
+            valList.push_back((int)val18);
+            valList.push_back((int)val19);
+            valList.push_back((int)val20);
+            valList.push_back((int)val21);
+            valList.push_back((int)val22);
+            valList.push_back((int)val23);
 
             std::cout << "received '/deviceA' message with arguments: "
                       << val0 << " " << val1 << " " << val2 << " " << val3 << " "
@@ -87,9 +109,10 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                       << "\n";
 
             for(int i=0; i<1; i++) {
-                for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = 2400;
-                command = dioList[i].getPWMPalseChangeCommand(values);
+                //for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = valList[j];
+                command = dioList[i].getPWMPalseChangeCommand(valList);
                 dioList[i].sendCommand(command);
+                valList.clear();
             }
 
 

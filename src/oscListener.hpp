@@ -30,6 +30,7 @@ private:
     std::vector<Dacs1500rcp24> dioList;
     std::string command;
     std::vector<int> values;
+    std::vector<int> valList;
 };
 
 
