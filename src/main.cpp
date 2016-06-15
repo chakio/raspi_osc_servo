@@ -1,9 +1,9 @@
 #include <iostream>
 #include <string.h>
 
-#include "osc/OscReceivedElements.h"
-#include "osc/OscPacketListener.h"
-#include "ip/UdpSocket.h"
+#include "oscpack/osc/OscReceivedElements.h"
+#include "oscpack/osc/OscPacketListener.h"
+#include "oscpack/ip/UdpSocket.h"
 
 
 #define PORT 7000

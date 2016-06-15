@@ -35,8 +35,8 @@ set(CMAKE_BUILD_TYPE Release)
 
 
 include_directories(/usr/local/include)
-include_directories(${PROJECT_SOURCE_DIR}/lib/oscpack)
 link_directories(/usr/local/lib)
+#link_directories(${PROJECT_SOURCE_DIR}/lib/oscpack)
 
 
 #add_executable(test src/main.cpp src/Dio.cpp)
