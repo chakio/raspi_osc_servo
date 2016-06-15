@@ -7,7 +7,7 @@
 
 
 #define PORT 7000
-#define PWM_CHANNEL_NUM 2
+#define PWM_CHANNEL_NUM 24
 
 
 int main(int argc, char* argv[])
@@ -71,8 +71,6 @@ int main(int argc, char* argv[])
                 &listener );
     std::cout << "press ctrl-c to end" << std::endl;
     s.RunUntilSigInt();
-
-
 
 
 
