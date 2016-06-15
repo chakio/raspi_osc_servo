@@ -1,4 +1,5 @@
 #include <iostream>
+#include <string.h>
 
 #include "osc/OscReceivedElements.h"
 #include "osc/OscPacketListener.h"
