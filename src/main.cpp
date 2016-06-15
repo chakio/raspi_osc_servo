@@ -41,6 +41,28 @@ int main(int argc, char* argv[])
     sleep(2);
 
 
+    // pwm init
+    for(int i=0; i<1; i++) {
+        command = dioList[i].getPWMInitializeCommand(3,20000);
+        dioList[i].sendCommand(command);
+    }
+
+
+    // pwm init pos
+    for(int i=0; i<1; i++) {
+        for(int j=0; j<PWM_CHANNEL_NUM; j++) values.push_back(1450);
+        command = dioList[i].getPWMPalseChangeCommand(values);
+        dioList[i].sendCommand(command);
+    }
+
+
+    // start
+    for(int i=0; i<1; i++) {
+        command = dioList[i].getPWMStartCommand();
+        dioList[i].sendCommand(command);
+    }
+
+
     // osc setup
     ExamplePacketListener listener;
     UdpListeningReceiveSocket s(
@@ -50,7 +72,11 @@ int main(int argc, char* argv[])
     s.RunUntilSigInt();
 
 
-    // stop
+
+
+
+
+    // device pwm stop
     for(int i=0; i<1; i++) {
         command = dioList[i].getPWMStopCommand();
         dioList[i].sendCommand(command);
