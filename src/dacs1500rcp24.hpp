@@ -26,6 +26,8 @@ public:
 
   std::string getDigitalOutPutCommand(std::string bitStrings);
 
+  std::string receiveCommand(int i);
+
   void sendCommand(std::string command);
 
 private:

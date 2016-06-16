@@ -153,6 +153,20 @@ std::string Dacs1500rcp24::getDigitalOutPutCommand(std::string bitStrings) {
 }
 
 
+std::string Dacs1500rcp24::receiveCommand(int i) {
+    std::string bdata(i, ' ');
+    DWORD recieve = 0;
+    try {
+        if (FT_Read(ftHandle, bdata, (DWORD)i, &recieve) != FT_OK) throw("FT_Read Failed");
+    }
+    catch(std::string str) {
+        std::cout << str << std::endl;
+        std::cout << "can't connect" << std::endl;
+    }
+    return bdata;
+}
+
+
 void Dacs1500rcp24::sendCommand(std::string command) {
   DWORD BytesWriten = 0;
   try {
