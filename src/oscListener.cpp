@@ -48,7 +48,7 @@ void raspiTest::dioStart() {
     for(int i=0; i<DIO_NUM; i++) {
         command = dioList[i].getPWMStartCommand();
         dioList[i].sendCommand(command);
-        dioList[2].receiveCommand(24 * 9);
+        dioList[i].receiveCommand(command.length());
     }
 }
 
