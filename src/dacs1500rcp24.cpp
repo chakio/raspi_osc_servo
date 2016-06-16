@@ -157,7 +157,7 @@ std::string Dacs1500rcp24::receiveCommand(int i) {
     std::string bdata(i, ' ');
     DWORD recieve = 0;
     try {
-        if (FT_Read(ftHandle, bdata, (DWORD)i, &recieve) != FT_OK) throw("FT_Read Failed");
+        if (FT_Read(ftHandle, (char*)bdata.c_str(), (DWORD)i, &recieve) != FT_OK) throw("FT_Read Failed");
     }
     catch(std::string str) {
         std::cout << str << std::endl;
