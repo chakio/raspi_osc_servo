@@ -27,7 +27,7 @@ void Dacs1500rcp24::open() {
     if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
     std::cout << "open dacs1500rcp24 device." << std::endl;
   }
-  catch(std::string str) {
+  catch(char const *str) {
     FT_Close(ftHandle);
     std::cout << "can't open dacs1500rcp24 device." << std::endl;
     std::cout << str << std::endl;
@@ -41,7 +41,7 @@ void Dacs1500rcp24::close() {
     if(FT_Close(ftHandle) != FT_OK) throw("FT_Close Failed");
     std::cout << "close dacs1500rcp24 device." << std::endl;
   }
-  catch(std::string str) {
+  catch(char const *str) {
     std::cout << str << std::endl;
     std::cout << "can't close dacs1500rcp24 device normal termination." << std::endl;
   }
@@ -159,7 +159,7 @@ std::string Dacs1500rcp24::receiveCommand(int i) {
     try {
         if (FT_Read(ftHandle, (char*)bdata.c_str(), (DWORD)i, &recieve) != FT_OK) throw("FT_Read Failed");
     }
-    catch(std::string str) {
+    catch(char const *str) {
         std::cout << str << std::endl;
         std::cout << "can't connect" << std::endl;
     }
@@ -173,7 +173,7 @@ void Dacs1500rcp24::sendCommand(std::string command) {
     if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
     //std::cout << command << std::endl;
   }
-  catch(std::string str) {
+  catch(char const *str) {
       std::cout << str << std::endl;
       std::cout << "can't connect" << std::endl;
   }
