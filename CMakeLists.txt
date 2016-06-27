@@ -26,21 +26,13 @@ set(VERSION_NUMBER_MICRO 0)
 #)
 
 
-# find packages
-#find_package(Threads)
-
-
 set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/bin)
 set(CMAKE_BUILD_TYPE Release)
 
 
 include_directories(/usr/local/include)
 link_directories(/usr/local/lib)
-#link_directories(${PROJECT_SOURCE_DIR}/lib/oscpack)
 
-
-#add_executable(test src/main.cpp src/Dio.cpp)
-#target_link_libraries(test ftd2xx)
 
 add_executable(test src/main.cpp src/dacs1500rcp24.cpp src/oscListener.cpp)
 target_link_libraries(test ftd2xx oscpack)
