@@ -29,7 +29,7 @@ public:
   std::string receiveCommand(int i);
 
   void sendCommand(std::string command);
-  void sendCommand(std::string command1, std::string command2);
+  //void sendCommand(std::string command1, std::string command2);
 
 private:
   std::string toHex(unsigned int x);
