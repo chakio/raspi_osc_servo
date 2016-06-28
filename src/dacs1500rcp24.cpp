@@ -190,7 +190,7 @@ void Dacs1500rcp24::sendCommand(std::string command) {
       command1[(9*14)-1] = 0x0D;
       for(int i=0; i<9*14; i++) command2[i] = command[i+(9*14)];
       command2[(9*14)-1] = 0x0D;
-      if (FT_Write(ftHandle, (char*)command1.c_str(), command1.length(), &BytesWriten) != FT_OK) throw("FT_Write command1 Failed");
+      //if (FT_Write(ftHandle, (char*)command1.c_str(), command1.length(), &BytesWriten) != FT_OK) throw("FT_Write command1 Failed");
       if (FT_Write(ftHandle, (char*)command2.c_str(), command2.length(), &BytesWriten) != FT_OK) throw("FT_Write command2 Failed");
     }
     else {
