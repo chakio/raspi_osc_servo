@@ -112,7 +112,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
 }
 
 
-std::vector<std::string> Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
+std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
   std::string result(usecList.size()*9, ' ');
   int c = 0;
   unsigned int a = 0;
