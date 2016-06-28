@@ -42,7 +42,6 @@ void raspiTest::dioStart() {
         command = dioList[i].getPWMPalseChangeCommand(values);
         dioList[i].sendCommand(command);
         dioList[i].receiveCommand(command.length());
-        //dioList[i].receiveCommand(24 * 9);
     }
 
     // start
@@ -85,7 +84,6 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                 command = dioList[0].getPWMPalseChangeCommand(values);
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
-                //dioList[0].receiveCommand(24 * 9);
             }
 
         } else if( strcmp( m.AddressPattern(), "/deviceB" ) == 0 ){
@@ -102,7 +100,6 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                 command = dioList[1].getPWMPalseChangeCommand(values);
                 dioList[1].sendCommand(command);
                 dioList[1].receiveCommand(command.length());
-                //dioList[1].receiveCommand(24 * 9);
             }
 
         } else if( strcmp( m.AddressPattern(), "/deviceC" ) == 0 ){
@@ -119,7 +116,6 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                 command = dioList[2].getPWMPalseChangeCommand(values);
                 dioList[2].sendCommand(command);
                 dioList[2].receiveCommand(command.length());
-                //dioList[2].receiveCommand(24 * 9);
             }
 
         }  else if( strcmp( m.AddressPattern(), "/deviceD" ) == 0 ){
@@ -138,7 +134,6 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                 command = dioList[3].getPWMPalseChangeCommand(values);
                 dioList[3].sendCommand(command);
                 dioList[3].receiveCommand(command.length());
-                //dioList[3].receiveCommand(24 * 9);
             }
 
         }
