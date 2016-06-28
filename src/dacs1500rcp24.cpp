@@ -167,35 +167,10 @@ std::string Dacs1500rcp24::receiveCommand(int i) {
 }
 
 
-// void Dacs1500rcp24::sendCommand(std::string command) {
-//   DWORD BytesWriten = 0;
-//   try {
-//     if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
-//     //std::cout << command << std::endl;
-//   }
-//   catch(char const *str) {
-//       std::cout << str << std::endl;
-//       std::cout << "can't connect" << std::endl;
-//   }
-// }
-
-
 void Dacs1500rcp24::sendCommand(std::string command) {
   DWORD BytesWriten = 0;
   try {
-    if(command.length() > 128) {
-      std::string command1(9*14, ' ');
-      std::string command2(9*14, ' ');
-      for(int i=0; i<9*14; i++) command1[i] = command[i];
-      command1[(9*14)-1] = 0x0D;
-      for(int i=0; i<9*14; i++) command2[i] = command[i+(9*14)];
-      command2[(9*14)-1] = 0x0D;
-      //if (FT_Write(ftHandle, (char*)command1.c_str(), command1.length(), &BytesWriten) != FT_OK) throw("FT_Write command1 Failed");
-      if (FT_Write(ftHandle, (char*)command2.c_str(), command2.length(), &BytesWriten) != FT_OK) throw("FT_Write command2 Failed");
-    }
-    else {
-      if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
-    }
+    if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
     //std::cout << command << std::endl;
   }
   catch(char const *str) {
@@ -203,6 +178,31 @@ void Dacs1500rcp24::sendCommand(std::string command) {
       std::cout << "can't connect" << std::endl;
   }
 }
+
+
+// void Dacs1500rcp24::sendCommand(std::string command) {
+//   DWORD BytesWriten = 0;
+//   try {
+//     if(command.length() > 128) {
+//       std::string command1(9*14, ' ');
+//       std::string command2(9*14, ' ');
+//       for(int i=0; i<9*14; i++) command1[i] = command[i];
+//       command1[(9*14)-1] = 0x0D;
+//       for(int i=0; i<9*14; i++) command2[i] = command[i+(9*14)];
+//       command2[(9*14)-1] = 0x0D;
+//       //if (FT_Write(ftHandle, (char*)command1.c_str(), command1.length(), &BytesWriten) != FT_OK) throw("FT_Write command1 Failed");
+//       if (FT_Write(ftHandle, (char*)command2.c_str(), command2.length(), &BytesWriten) != FT_OK) throw("FT_Write command2 Failed");
+//     }
+//     else {
+//       if (FT_Write(ftHandle, (char*)command.c_str(), command.length(), &BytesWriten) != FT_OK) throw("FT_Write Failed");
+//     }
+//     //std::cout << command << std::endl;
+//   }
+//   catch(char const *str) {
+//       std::cout << str << std::endl;
+//       std::cout << "can't connect" << std::endl;
+//   }
+// }
 
 
 std::string Dacs1500rcp24::toHex(unsigned int x) {
