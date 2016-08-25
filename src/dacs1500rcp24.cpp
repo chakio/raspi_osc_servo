@@ -71,7 +71,7 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
   result[10] = charDeviceID;
   hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[11 + i] = hexcode[i];
-  result[17] = '&';
+  result[17] = 0x0D;
 
   return result;
 }
