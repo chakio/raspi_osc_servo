@@ -18,7 +18,7 @@ void raspiTest::dioStart() {
         dioList[i].sendCommand(command);
         dioList[i].receiveCommand(command.length());
     }
-    sleep(2000);
+    sleep(2);
     for(int i=0; i<DIO_NUM; i++) {
         command = dioList[i].getDigitalOutPutCommand("000000");
         dioList[i].sendCommand(command);
