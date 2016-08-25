@@ -119,12 +119,13 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
     a = 0;
     a += (i < 12 ? 0 : 1) << 16;
     a += (i % 12) << 12;
-    a += usecList[i];
+    a += (unsigned int)usecList[i];
     std::string hex = toHex(a);
     result[c++] = 'Q';
     result[c++] = charDeviceID;
 	for (int  j = 0; j < 6; j++) result[(i*9)+j+2] = hex[j];
     result[(i*9)+8] = '&';
+	c = (i * 9) + 9;
   }
   result[(usecList.size() * 9)-1] = 0x0D;
   return result;
