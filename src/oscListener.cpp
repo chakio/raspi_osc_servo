@@ -40,10 +40,16 @@ void raspiTest::dioStart() {
             oscValues.push_back(1450);
             values.push_back(1450);
         }
-        command = dioList[i].getPWMPalseChangeCommand(values);
-        dioList[i].sendCommand(command);
-        dioList[i].receiveCommand(command.length());
-        //dioList[i].receiveCommand(24 * 9);
+
+		for (int j = 0; j<PWM_CHANNEL_NUM / 2; j++) values[j] = 1450;
+		command = dioList[i].getPWMPalseChangeCommand(1,0, values);
+		dioList[0].sendCommand(command);
+		dioList[0].receiveCommand(command.length());
+
+		for (int j = PWM_CHANNEL_NUM / 2; j<PWM_CHANNEL_NUM; j++) values[j - PWM_CHANNEL_NUM / 2] = 1450;
+		command = dioList[i].getPWMPalseChangeCommand(1,1, values);
+		dioList[0].sendCommand(command);
+		dioList[0].receiveCommand(command.length());
     }
 
     // start
@@ -98,12 +104,12 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                         >> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
                         >> osc::EndMessage;
                 for(int j=0; j<PWM_CHANNEL_NUM/2; j++) values[j] = (int)oscValues[j];
-                command = dioList[0].getPWMPalseChangeCommand(0,values);
+                command = dioList[0].getPWMPalseChangeCommand(1,0,values);
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
 
 				for (int j = PWM_CHANNEL_NUM / 2; j<PWM_CHANNEL_NUM ; j++) values[j- PWM_CHANNEL_NUM / 2] = (int)oscValues[j];
-				command = dioList[0].getPWMPalseChangeCommand(1, values);
+				command = dioList[0].getPWMPalseChangeCommand(1,1, values);
 				dioList[0].sendCommand(command);
 				dioList[0].receiveCommand(command.length());
                 //dioList[0].receiveCommand(24 * 9);
@@ -120,12 +126,12 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 					>> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
 					>> osc::EndMessage;
 				for (int j = 0; j<PWM_CHANNEL_NUM / 2; j++) values[j] = (int)oscValues[j];
-				command = dioList[1].getPWMPalseChangeCommand(0, values);
+				command = dioList[1].getPWMPalseChangeCommand(1,0, values);
 				dioList[1].sendCommand(command);
 				dioList[1].receiveCommand(command.length());
 
 				for (int j = PWM_CHANNEL_NUM / 2; j<PWM_CHANNEL_NUM; j++) values[j - PWM_CHANNEL_NUM / 2] = (int)oscValues[j];
-				command = dioList[1].getPWMPalseChangeCommand(1, values);
+				command = dioList[1].getPWMPalseChangeCommand(1,1, values);
 				dioList[1].sendCommand(command);
 				dioList[1].receiveCommand(command.length());
 				//dioList[0].receiveCommand(24 * 9);
@@ -142,12 +148,12 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 					>> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
 					>> osc::EndMessage;
 				for (int j = 0; j<PWM_CHANNEL_NUM / 2; j++) values[j] = (int)oscValues[j];
-				command = dioList[2].getPWMPalseChangeCommand(0, values);
+				command = dioList[2].getPWMPalseChangeCommand(1,0, values);
 				dioList[2].sendCommand(command);
 				dioList[2].receiveCommand(command.length());
 
 				for (int j = PWM_CHANNEL_NUM / 2; j<PWM_CHANNEL_NUM; j++) values[j - PWM_CHANNEL_NUM / 2] = (int)oscValues[j];
-				command = dioList[2].getPWMPalseChangeCommand(1, values);
+				command = dioList[2].getPWMPalseChangeCommand(1,1, values);
 				dioList[2].sendCommand(command);
 				dioList[2].receiveCommand(command.length());
 				//dioList[0].receiveCommand(24 * 9);
@@ -164,12 +170,12 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 					>> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
 					>> osc::EndMessage;
 				for (int j = 0; j<PWM_CHANNEL_NUM / 2; j++) values[j] = (int)oscValues[j];
-				command = dioList[3].getPWMPalseChangeCommand(0, values);
+				command = dioList[3].getPWMPalseChangeCommand(1,0, values);
 				dioList[3].sendCommand(command);
 				dioList[3].receiveCommand(command.length());
 
 				for (int j = PWM_CHANNEL_NUM / 2; j<PWM_CHANNEL_NUM; j++) values[j - PWM_CHANNEL_NUM / 2] = (int)oscValues[j];
-				command = dioList[3].getPWMPalseChangeCommand(1, values);
+				command = dioList[3].getPWMPalseChangeCommand(1,1, values);
 				dioList[3].sendCommand(command);
 				dioList[3].receiveCommand(command.length());
 				//dioList[0].receiveCommand(24 * 9);
