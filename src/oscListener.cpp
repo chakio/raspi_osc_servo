@@ -12,19 +12,7 @@ void raspiTest::dioStart() {
     // device open
     for(int i=0; i<DIO_NUM; i++) dioList[i].open();
 
-    // lamp on -> off
-    for(int i=0; i<DIO_NUM; i++) {
-        command = dioList[i].getDigitalOutPutCommand("800000");
-        dioList[i].sendCommand(command);
-        dioList[i].receiveCommand(command.length());
-    }
-    sleep(2);
-    for(int i=0; i<DIO_NUM; i++) {
-        command = dioList[i].getDigitalOutPutCommand("000000");
-        dioList[i].sendCommand(command);
-        dioList[i].receiveCommand(command.length());
-    }
-    sleep(2);
+   
 
     // pwm init
     for(int i=0; i<DIO_NUM; i++) {
@@ -64,6 +52,11 @@ void raspiTest::dioStart() {
         dioList[i].sendCommand(command);
         dioList[i].receiveCommand(command.length());
     }
+	sleep(2);
+
+	command = dioList[0].getPWMPalseChangeCommand(12,800);
+	dioList[0].sendCommand(command);
+	dioList[0].receiveCommand(command.length());
 }
 
 
