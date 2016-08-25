@@ -22,14 +22,14 @@ Dacs1500rcp24::~Dacs1500rcp24() {}
 
 void Dacs1500rcp24::open() {
   try {
-    if(FT_Open(intDeviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");
-    if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
-    if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
-    std::cout << "open dacs1500rcp24 device." << std::endl;
+    if(FT_Open(intDeviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");//例外
+    if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");//例外
+    if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");//例外
+    std::cout << "open dacs1500rcp24 device." << std::endl;//通常
   }
   catch(char const *str) {
     FT_Close(ftHandle);
-    std::cout << "can't open dacs1500rcp24 device." << std::endl;
+    std::cout << "can't open dacs1500rcp24 device." << std::endl;//例外の場合
     std::cout << str << std::endl;
   }
 }
@@ -52,6 +52,7 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
   int data = 0;
   std::string result(18, ' ');
 
+  //ch0~11
   data += 1 << 23;
   data += pwmCountClockID << 20;
   data += 0 << 16;
@@ -61,15 +62,16 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
   result[1] = charDeviceID;
   std::string hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];
-  result[8] = 0x0D;
+  result[8] = '&';
 
+  //ch12~23
   data = (data | (1 << 16));
 
   result[9] = 'Q';
   result[10] = charDeviceID;
   hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[11 + i] = hexcode[i];
-  result[17] = 0x0D;
+  result[17] = '&';
 
   return result;
 }
@@ -92,7 +94,7 @@ std::string Dacs1500rcp24::getPWMStopCommand() {
 
 
 std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
-  std::string result(9, ' ');
+  std::string result(9, ' ')
   int c = 0;
   unsigned int a = 0;
   a += (ch < 12 ? 0 : 1) << 16;
