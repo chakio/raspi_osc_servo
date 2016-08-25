@@ -43,7 +43,6 @@ void raspiTest::dioStart() {
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
 
-		for (int j = 0; j<12; j++) values[j] = 1450;
 		command = dioList[i].getPWMPalseChangeCommand(1,1, values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
@@ -65,7 +64,7 @@ void raspiTest::dioStart() {
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
 
-		for (int j = 0; j<12; j++) values[j] = 650;
+		
 		command = dioList[i].getPWMPalseChangeCommand(1, 1, values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
@@ -79,7 +78,6 @@ void raspiTest::dioStart() {
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
 
-		for (int j = 0; j<12; j++) values[j] = 1450;
 		command = dioList[i].getPWMPalseChangeCommand(1, 1, values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
