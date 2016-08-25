@@ -105,12 +105,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
   std::string hex = toHex(a);
   result[c++] = 'Q';
   result[c++] = charDeviceID;
-  result[c++] = hex[0];
-  result[c++] = hex[1];
-  result[c++] = hex[2];
-  result[c++] = hex[3];
-  result[c++] = hex[4];
-  result[c++] = hex[5];
+  for (int i = 0; i < 6; i++) result[2 + i] = hex[i];
   result[c++] = 0x0D;
   return result;
 }
@@ -128,15 +123,10 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
     std::string hex = toHex(a);
     result[c++] = 'Q';
     result[c++] = charDeviceID;
-    result[c++] = hex[0];
-    result[c++] = hex[1];
-    result[c++] = hex[2];
-    result[c++] = hex[3];
-    result[c++] = hex[4];
-    result[c++] = hex[5];
+	for ( i = 0; i < 6; i++) result[i+2] = hex[i];
     result[c++] = '&';
   }
-  result[usecList.size() - 1] = 0x0D;
+  result[(usecList.size() * 9)-1] = 0x0D;
   return result;
 }
 
