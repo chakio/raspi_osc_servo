@@ -94,7 +94,7 @@ std::string Dacs1500rcp24::getPWMStopCommand() {
 
 
 std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
-  std::string result(9, ' ')
+	std::string result(9, ' ');
   int c = 0;
   unsigned int a = 0;
   a += (ch < 12 ? 0 : 1) << 16;
