@@ -117,7 +117,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int o,int ch,std::vector<int
   {
 	  int c = 0;
 	  unsigned int a = 0;
-	  for (int i = 0; i < usecList.size(); i++) {
+	  for (int i = 0; i < 12; i++) {
 		  a = 0;
 		  a += 0 << 16;
 		  a += (i % 12) << 12;
@@ -129,14 +129,14 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int o,int ch,std::vector<int
 		  result[(i * 9) + 8] = '&';
 		  c = (i * 9) + 9;
 	  }
-	  result[(usecList.size() * 9) - 1] = 0x0D;
+	  result[(12 * 9) - 1] = 0x0D;
 	  return result;
   }
   else
   {
 	  int c = 0;
 	  unsigned int a = 0;
-	  for (int i = 0; i < usecList.size(); i++) {
+	  for (int i = 0; i < 12; i++) {
 		  a = 0;
 		  a += 1 << 16;
 		  a += (i % 12) << 12;
@@ -148,7 +148,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int o,int ch,std::vector<int
 		  result[(i * 9) + 8] = '&';
 		  c = (i * 9) + 9;
 	  }
-	  result[(usecList.size() * 9) - 1] = 0x0D;
+	  result[(12 * 9) - 1] = 0x0D;
 	  return result;
   }
 }
