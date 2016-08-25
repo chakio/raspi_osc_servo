@@ -36,20 +36,17 @@ void raspiTest::dioStart() {
 	
     // pwm init pos
     for(int i=0; i<DIO_NUM; i++) {
-        for(int j=0; j<PWM_CHANNEL_NUM; j++) {
-            oscValues.push_back(1450);
-            values.push_back(1450);
-        }
+       
 
-		for (int j = 0; j<PWM_CHANNEL_NUM / 2; j++) values[j] = 1450;
+		for (int j = 0; j<12; j++) values[j] = 1450;
 		command = dioList[i].getPWMPalseChangeCommand(1,0, values);
-		dioList[0].sendCommand(command);
-		dioList[0].receiveCommand(command.length());
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
 
-		for (int j = PWM_CHANNEL_NUM / 2; j<PWM_CHANNEL_NUM; j++) values[j - PWM_CHANNEL_NUM / 2] = 1450;
+		for (int j = 0; j<12; j++) values[j] = 1450;
 		command = dioList[i].getPWMPalseChangeCommand(1,1, values);
-		dioList[0].sendCommand(command);
-		dioList[0].receiveCommand(command.length());
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
     }
 
     // start
@@ -61,37 +58,31 @@ void raspiTest::dioStart() {
 	sleep(2);
 
 	for (int i = 0; i<DIO_NUM; i++) {
-		for (int j = 0; j<PWM_CHANNEL_NUM; j++) {
-			oscValues.push_back(1450);
-			values.push_back(1450);
-		}
 
-		for (int j = 0; j<PWM_CHANNEL_NUM / 2; j++) values[j] = 550;
+
+		for (int j = 0; j<12; j++) values[j] = 650;
 		command = dioList[i].getPWMPalseChangeCommand(1, 0, values);
-		dioList[0].sendCommand(command);
-		dioList[0].receiveCommand(command.length());
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
 
-		for (int j = PWM_CHANNEL_NUM / 2; j<PWM_CHANNEL_NUM; j++) values[j - PWM_CHANNEL_NUM / 2] = 550;
+		for (int j = 0; j<12; j++) values[j] = 650;
 		command = dioList[i].getPWMPalseChangeCommand(1, 1, values);
-		dioList[0].sendCommand(command);
-		dioList[0].receiveCommand(command.length());
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
 	}
 	sleep(2);
 	for (int i = 0; i<DIO_NUM; i++) {
-		for (int j = 0; j<PWM_CHANNEL_NUM; j++) {
-			oscValues.push_back(1450);
-			values.push_back(1450);
-		}
 
-		for (int j = 0; j<PWM_CHANNEL_NUM / 2; j++) values[j] = 1450;
+
+		for (int j = 0; j<12; j++) values[j] = 1450;
 		command = dioList[i].getPWMPalseChangeCommand(1, 0, values);
-		dioList[0].sendCommand(command);
-		dioList[0].receiveCommand(command.length());
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
 
-		for (int j = PWM_CHANNEL_NUM / 2; j<PWM_CHANNEL_NUM; j++) values[j - PWM_CHANNEL_NUM / 2] = 1450;
+		for (int j = 0; j<12; j++) values[j] = 1450;
 		command = dioList[i].getPWMPalseChangeCommand(1, 1, values);
-		dioList[0].sendCommand(command);
-		dioList[0].receiveCommand(command.length());
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
 	}
 }
 
