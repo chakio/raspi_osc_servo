@@ -111,24 +111,46 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
 }
 
 
-std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
+std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch,std::vector<int> usecList) {
   std::string result(usecList.size()*9, ' ');
-  int c = 0;
-  unsigned int a = 0;
-  for (int i = 0; i < usecList.size(); i++) {
-    a = 0;
-    a += (i < 12 ? 0 : 1) << 16;
-    a += (i % 12) << 12;
-    a += (unsigned int)usecList[i];
-    std::string hex = toHex(a);
-    result[c++] = 'Q';
-    result[c++] = charDeviceID;
-	for (int  j = 0; j < 6; j++) result[(i*9)+j+2] = hex[j];
-    result[(i*9)+8] = '&';
-	c = (i * 9) + 9;
+  if (ch == 0)
+  {
+	  int c = 0;
+	  unsigned int a = 0;
+	  for (int i = 0; i < usecList.size(); i++) {
+		  a = 0;
+		  a += 0 << 16;
+		  a += (i % 12) << 12;
+		  a += (unsigned int)usecList[i];
+		  std::string hex = toHex(a);
+		  result[c++] = 'Q';
+		  result[c++] = charDeviceID;
+		  for (int j = 0; j < 6; j++) result[(i * 9) + j + 2] = hex[j];
+		  result[(i * 9) + 8] = '&';
+		  c = (i * 9) + 9;
+	  }
+	  result[(usecList.size() * 9) - 1] = 0x0D;
+	  return result;
   }
-  result[(usecList.size() * 9)-1] = 0x0D;
-  return result;
+  else
+  {
+	  int c = 0;
+	  unsigned int a = 0;
+	  for (int i = 0; i < usecList.size(); i++) {
+		  a = 0;
+		  a += 1 << 16;
+		  a += (i % 12) << 12;
+		  a += (unsigned int)usecList[i];
+		  std::string hex = toHex(a);
+		  result[c++] = 'Q';
+		  result[c++] = charDeviceID;
+		  for (int j = 0; j < 6; j++) result[(i * 9) + j + 2] = hex[j];
+		  result[(i * 9) + 8] = '&';
+		  c = (i * 9) + 9;
+	  }
+	  result[(usecList.size() * 9) - 1] = 0x0D;
+	  return result;
+  }
 }
 
 

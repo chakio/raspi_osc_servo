@@ -22,7 +22,7 @@ public:
   std::string getPWMStartCommand();
   std::string getPWMStopCommand();
   std::string getPWMPalseChangeCommand(int ch, int usec);
-  std::string getPWMPalseChangeCommand(std::vector<int> usecList);
+  std::string getPWMPalseChangeCommand(int ch,std::vector<int> usecList);
 
   std::string getDigitalOutPutCommand(std::string bitStrings);
 
