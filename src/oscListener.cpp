@@ -27,7 +27,10 @@ void raspiTest::dioStart() {
 			oscValues.push_back(1450);
 			values.push_back(1450);
 		}
-		command = dioList[i].getPWMPalseChangeCommand(values);
+		command = dioList[i].getPWMPalseChangeCommand(1,0,values);
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
+		command = dioList[i].getPWMPalseChangeCommand(1, 1, values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
 		//dioList[i].receiveCommand(24 * 9);
