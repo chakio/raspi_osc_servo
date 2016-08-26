@@ -14,7 +14,7 @@
 
 
 #define PWM_CHANNEL_NUM 24
-#define DIO_NUM 2
+#define DIO_NUM 1
 
 
 class raspiTest : public osc::OscPacketListener {
