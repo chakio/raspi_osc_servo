@@ -46,6 +46,7 @@ void raspiTest::dioStart() {
 		command = dioList[i].getPWMPalseChangeCommand(12, values[12]);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
+		std::cout << "pwm init pos" << std::endl;
     }
 
     // start
