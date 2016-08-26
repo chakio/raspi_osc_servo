@@ -52,7 +52,7 @@ void raspiTest::dioStart() {
 		command = dioList[i].getPWMPalseChangeCommand(1, 1, values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
-		std::cout << "pwm init pos" << std::endl;
+		
     }
 
     // start
@@ -126,7 +126,7 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
 
-				for (int j = PWM_CHANNEL_NUM / 2; j<PWM_CHANNEL_NUM ; j++) values[j- PWM_CHANNEL_NUM / 2] = (int)oscValues[j];
+				for (int j = 0; j<12 ; j++) values[j] = (int)oscValues[j+12];
 				command = dioList[0].getPWMPalseChangeCommand(1,1, values);
 				dioList[0].sendCommand(command);
 				dioList[0].receiveCommand(command.length());
