@@ -118,6 +118,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int o,int ch,std::vector<int
 	  //int c = 0;
 	  unsigned int a = 0;
 	  for (int i = 0; i < 1; i++) {
+		  std::string hex(6, ' ');
 		  a = 0;
 		  a += 0 << 16;
 		  a += (unsigned int)i << 12;
