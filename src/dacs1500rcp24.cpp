@@ -123,7 +123,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int o,int ch,std::vector<int
 		  a += 0 << 16;
 		  a += (unsigned int)i << 12;
 		  a += (unsigned int)usecList[i];
-		  std::string hex = toHex(a);
+		  hex = toHex(a);
 		  result[0+(9*i)] = 'Q';
 		  result[1 + (9 * i)] = charDeviceID;
 		  result[2 + (9 * i)] = hex[0];
