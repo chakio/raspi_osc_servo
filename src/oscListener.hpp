@@ -31,7 +31,6 @@ private:
     std::vector<Dacs1500rcp24> dioList;
     std::string command;
 	std::vector<int> values;
-	values.reserve(12);
     std::vector<osc::int32> oscValues;
 };
 
