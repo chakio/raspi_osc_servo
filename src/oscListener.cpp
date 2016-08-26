@@ -30,9 +30,7 @@ void raspiTest::dioStart() {
 		command = dioList[i].getPWMPalseChangeCommand(1,0,values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
-		command = dioList[i].getPWMPalseChangeCommand(1, 1, values);
-		dioList[i].sendCommand(command);
-		dioList[i].receiveCommand(command.length());
+		
 		//dioList[i].receiveCommand(24 * 9);
 	}
 
@@ -45,28 +43,17 @@ void raspiTest::dioStart() {
 	sleep(2);
 	
 
-		for (int j = 0; j<12; j++) values[j] = 650;
+		for (int j = 0; j<8; j++) values[j] = 650;
 		command = dioList[0].getPWMPalseChangeCommand(1, 0, values);
 		dioList[0].sendCommand(command);
 		dioList[0].receiveCommand(command.length());
-
-		
-		command = dioList[0].getPWMPalseChangeCommand(1, 1, values);
-		dioList[0].sendCommand(command);
-		dioList[0].receiveCommand(command.length());
-	
 	sleep(2);
 	
 
-		for (int j = 0; j<12; j++) values[j] = 1450;
+		for (int j = 0; j<8; j++) values[j] = 1450;
 		command = dioList[0].getPWMPalseChangeCommand(1, 0, values);
 		dioList[0].sendCommand(command);
 		dioList[0].receiveCommand(command.length());
-
-		command = dioList[0].getPWMPalseChangeCommand(1, 1, values);
-		dioList[0].sendCommand(command);
-		dioList[0].receiveCommand(command.length());
-	
 }
 
 
@@ -92,22 +79,12 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                 osc::ReceivedMessageArgumentStream args = m.ArgumentStream();
                 args >> oscValues[0] >> oscValues[1] >> oscValues[2] >> oscValues[3]
                         >> oscValues[4] >> oscValues[5] >> oscValues[6] >> oscValues[7]
-                        >> oscValues[8] >> oscValues[9] >> oscValues[10] >> oscValues[11]
-                        >> oscValues[12] >> oscValues[13] >> oscValues[14] >> oscValues[15]
-                        >> oscValues[16] >> oscValues[17] >> oscValues[18] >> oscValues[19]
-                        >> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
                         >> osc::EndMessage;
-                for(int j=0; j<12; j++) values[j] = (int)oscValues[j];
+                for(int j=0; j<8; j++) values[j] = (int)oscValues[j];
                 command = dioList[0].getPWMPalseChangeCommand(1,0,values);
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
 
-				for (int j = 0; j<12 ; j++) values[j] = (int)oscValues[j+12];
-				command = dioList[0].getPWMPalseChangeCommand(1,1, values);
-				dioList[0].sendCommand(command);
-				dioList[0].receiveCommand(command.length());
-                //dioList[0].receiveCommand(24 * 9);
-				std::cout << values[0] << std::endl;
             }
 
         } else if( strcmp( m.AddressPattern(), "/deviceB" ) == 0 ){

@@ -78,18 +78,18 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
 
 
 std::string Dacs1500rcp24::getPWMStartCommand() {
-	std::string result = "Q 00F000&Q001F000 ";
-	result[1] = charDeviceID;
-	result[17] = 0x0D;
-	return result;
+  std::string result = "Q 00F000&Q001F000 ";
+  result[1] = charDeviceID;
+  result[17] = 0x0D;
+  return result;
 }
 
 
 std::string Dacs1500rcp24::getPWMStopCommand() {
-	std::string result = "Q 00E000&Q001E000 ";
-	result[1] = charDeviceID;
-	result[17] = 0x0D;
-	return result;
+  std::string result = "Q 00E000&Q001E000 ";
+  result[1] = charDeviceID;
+  result[17] = 0x0D;
+  return result;
 }
 
 
@@ -111,8 +111,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
 
 std::string Dacs1500rcp24::getPWMPalseChangeCommand(int o,int ch,std::vector<int> usecList) {
   std::string result(usecList.size() * 9, ' ');
-  if (ch == 0)
-  {
+  
 	  int c = 0;
 	  unsigned int a = 0;
 	  for (int i = 0; i <  usecList.size(); i++) {
@@ -133,7 +132,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int o,int ch,std::vector<int
 	  }
 	  result[c-1] = 0x0D;
 	  return result;
-  }
+  
   /*else
   {
 	  int c = 0;
