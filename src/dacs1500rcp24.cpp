@@ -78,20 +78,18 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
 
 
 std::string Dacs1500rcp24::getPWMStartCommand() {
-  std::string result = "Q 00F000&Q 01F000 ";
-  result[1] = charDeviceID;
-  result[10] = charDeviceID;
-  result[17] = 0x0D;
-  return result;
+	std::string result = "Q 00F000&Q001F000 ";
+	result[1] = charDeviceID;
+	result[17] = 0x0D;
+	return result;
 }
 
 
 std::string Dacs1500rcp24::getPWMStopCommand() {
-  std::string result = "Q 00E000&Q 01E000 ";
-  result[1] = charDeviceID;
-  result[10] = charDeviceID;
-  result[17] = 0x0D;
-  return result;
+	std::string result = "Q 00E000&Q001E000 ";
+	result[1] = charDeviceID;
+	result[17] = 0x0D;
+	return result;
 }
 
 
