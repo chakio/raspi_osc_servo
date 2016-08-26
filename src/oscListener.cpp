@@ -20,47 +20,25 @@ void raspiTest::dioStart() {
         dioList[i].sendCommand(command);
         dioList[i].receiveCommand(command.length());
     }
-	// lamp on -> off
-	for (int i = 0; i<DIO_NUM; i++) {
-		command = dioList[i].getDigitalOutPutCommand("800000");
-		dioList[i].sendCommand(command);
-		dioList[i].receiveCommand(command.length());
-	}
-	sleep(2);
-	for (int i = 0; i<DIO_NUM; i++) {
-		command = dioList[i].getDigitalOutPutCommand("000000");
-		dioList[i].sendCommand(command);
-		dioList[i].receiveCommand(command.length());
-	}
-	sleep(2);
 	
     // pwm init pos
-    for(int i=0; i<DIO_NUM; i++) {
-       
-
-		for (int j = 0; j < 12; j++)
-		{
+	for (int i = 0; i<DIO_NUM; i++) {
+		for (int j = 0; j<PWM_CHANNEL_NUM; j++) {
+			oscValues.push_back(1450);
 			values.push_back(1450);
-			oscValues.push_back(1450);
-			oscValues.push_back(1450);
 		}
-		command = dioList[i].getPWMPalseChangeCommand(1, 0, values);
+		command = dioList[i].getPWMPalseChangeCommand(values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
+		//dioList[i].receiveCommand(24 * 9);
+	}
 
-
-		command = dioList[i].getPWMPalseChangeCommand(1, 1, values);
+	// start
+	for (int i = 0; i<DIO_NUM; i++) {
+		command = dioList[i].getPWMStartCommand();
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
-		
-    }
-
-    // start
-    
-        command = dioList[0].getPWMStartCommand();
-        dioList[0].sendCommand(command);
-        dioList[0].receiveCommand(command.length());
-    
+	}
 	sleep(2);
 	
 

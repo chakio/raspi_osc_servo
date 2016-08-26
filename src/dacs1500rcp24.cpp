@@ -112,29 +112,28 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
 
 
 std::string Dacs1500rcp24::getPWMPalseChangeCommand(int o,int ch,std::vector<int> usecList) {
-  std::string result(12*9, ' ');
+  std::string result(usecList.size() * 9, ' ');
   if (ch == 0)
   {
-	  //int c = 0;
+	  int c = 0;
 	  unsigned int a = 0;
-	  for (int i = 0; i < 12; i++) {
-		  std::string hex(6, ' ');
+	  for (int i = 0; i <  usecList.size(); i++) {
 		  a = 0;
-		  a += 0 << 16;
-		  a += (unsigned int)i << 12;
-		  a += (unsigned int)usecList[i];
-		  hex = toHex(a);
-		  result[0+(9*i)] = 'Q';
-		  result[1 + (9 * i)] = charDeviceID;
-		  result[2 + (9 * i)] = hex[0];
-		  result[3 + (9 * i)] = hex[1];
-		  result[4 + (9 * i)] = hex[2];
-		  result[5 + (9 * i)] = hex[3];
-		  result[6 + (9 * i)] = hex[4];
-		  result[7 + (9 * i)] = hex[5];
-		  result[8 + (9 * i)] = '&';
+		  a += (i < 12 ? 0 : 1) << 16;
+		  a += (i % 12) << 12;
+		  a += usecList[i];
+		  std::string hex = toHex(a);
+		  result[c++] = 'Q';
+		  result[c++] = charDeviceID;
+		  result[c++] = hex[0];
+		  result[c++] = hex[1];
+		  result[c++] = hex[2];
+		  result[c++] = hex[3];
+		  result[c++] = hex[4];
+		  result[c++] = hex[5];
+		  result[c++] = '&';
 	  }
-	  result[(12 * 9) - 1] = 0x0D;
+	  result[c-1] = 0x0D;
 	  return result;
   }
   /*else
