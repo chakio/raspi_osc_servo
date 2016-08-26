@@ -33,7 +33,7 @@ void raspiTest::dioStart() {
 		dioList[i].receiveCommand(command.length());
 	}
 	sleep(2);
-	/*
+	
     // pwm init pos
     for(int i=0; i<DIO_NUM; i++) {
        
@@ -46,7 +46,7 @@ void raspiTest::dioStart() {
 		command = dioList[i].getPWMPalseChangeCommand(1,1, values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
-    }*/
+    }
 
     // start
     for(int i=0; i<DIO_NUM; i++) {
@@ -55,7 +55,7 @@ void raspiTest::dioStart() {
         dioList[i].receiveCommand(command.length());
     }
 	sleep(2);
-	/*
+	
 	for (int i = 0; i<DIO_NUM; i++) {
 
 
@@ -81,7 +81,7 @@ void raspiTest::dioStart() {
 		command = dioList[i].getPWMPalseChangeCommand(1, 1, values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
-	}*/
+	}
 }
 
 
