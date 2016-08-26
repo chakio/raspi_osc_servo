@@ -27,7 +27,7 @@ void raspiTest::dioStart() {
 			oscValues.push_back(1450);
 			values.push_back(1450);
 		}
-		command = dioList[i].getPWMPalseChangeCommand(1,0,values);
+		command = dioList[i].getPWMPalseChangeCommand(values);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
 		
@@ -44,14 +44,14 @@ void raspiTest::dioStart() {
 	
 
 		for (int j = 0; j<8; j++) values[j] = 650;
-		command = dioList[0].getPWMPalseChangeCommand(1, 0, values);
+		command = dioList[0].getPWMPalseChangeCommand( values);
 		dioList[0].sendCommand(command);
 		dioList[0].receiveCommand(command.length());
 	sleep(2);
 	
 
 		for (int j = 0; j<8; j++) values[j] = 1450;
-		command = dioList[0].getPWMPalseChangeCommand(1, 0, values);
+		command = dioList[0].getPWMPalseChangeCommand(values);
 		dioList[0].sendCommand(command);
 		dioList[0].receiveCommand(command.length());
 }
@@ -81,7 +81,7 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                         >> oscValues[4] >> oscValues[5] >> oscValues[6] >> oscValues[7]
                         >> osc::EndMessage;
                 for(int j=0; j<8; j++) values[j] = (int)oscValues[j];
-                command = dioList[0].getPWMPalseChangeCommand(1,0,values);
+                command = dioList[0].getPWMPalseChangeCommand(values);
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
 
