@@ -38,7 +38,7 @@ void raspiTest::dioStart() {
     for(int i=0; i<DIO_NUM; i++) {
        
 
-		//for (int j = 0; j<12; j++) values[j] = 1450;
+		for (int j = 0; j<12; j++) values[j] = 1450;
 		command = dioList[i].getPWMPalseChangeCommand(0,1450);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
