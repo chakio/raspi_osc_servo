@@ -119,9 +119,7 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                         >> oscValues[16] >> oscValues[17] >> oscValues[18] >> oscValues[19]
                         >> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
                         >> osc::EndMessage;
-				std::cout << "set oscValues" << std::endl;
                 for(int j=0; j<12; j++) values[j] = (int)oscValues[j];
-				std::cout << "set oscValues end" << std::endl;
                 command = dioList[0].getPWMPalseChangeCommand(1,0,values);
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
