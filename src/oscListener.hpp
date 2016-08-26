@@ -30,7 +30,7 @@ protected:
 private:
     std::vector<Dacs1500rcp24> dioList;
     std::string command;
-    std::vector<int> values(12);
+    std::vector<int> values;
     std::vector<osc::int32> oscValues;
 };
 
