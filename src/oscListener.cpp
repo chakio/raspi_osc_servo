@@ -38,12 +38,12 @@ void raspiTest::dioStart() {
     for(int i=0; i<DIO_NUM; i++) {
        
 
-		for (int j = 0; j<12; j++) values[j] = 1450;
-		command = dioList[i].getPWMPalseChangeCommand(0, values[0]);
+		//for (int j = 0; j<12; j++) values[j] = 1450;
+		command = dioList[i].getPWMPalseChangeCommand(0, values1450);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
 
-		command = dioList[i].getPWMPalseChangeCommand(12, values[12]);
+		command = dioList[i].getPWMPalseChangeCommand(12, values1450);
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
 		std::cout << "pwm init pos" << std::endl;
