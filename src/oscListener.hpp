@@ -13,7 +13,7 @@
 #include "dacs1500rcp24.hpp"
 
 
-#define PWM_CHANNEL_NUM 8
+#define PWM_CHANNEL_NUM 12
 #define DIO_NUM 1
 
 
