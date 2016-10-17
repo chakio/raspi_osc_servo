@@ -83,11 +83,14 @@ void raspiTest::dioStart() {
 
 	
 	
-	for (int k = 0; k < PWM_CHANNEL_NUM; k++) //0~12
+	for (int k = 0; k < PWM_CHANNEL_NUM*2; k++) //0~12
 	{
 	values[ k] = 700;
 	}
 	command = dioList[1].getPWMPalseChangeCommand(values, 0);
+	dioList[1].sendCommand(command);
+	dioList[1].receiveCommand(command.length());
+	command = dioList[1].getPWMPalseChangeCommand(values, 1);
 	dioList[1].sendCommand(command);
 	dioList[1].receiveCommand(command.length());
 	//dioList[i].receiveCommand(24 * 9);
@@ -99,11 +102,14 @@ void raspiTest::dioStart() {
 	dioList[i].receiveCommand(command.length());
 	}
 
-	for (int k = 0; k < PWM_CHANNEL_NUM; k++) //0~12
+	for (int k = 0; k < PWM_CHANNEL_NUM*2; k++) //0~12
 	{
 		values[k] = 1000;
 	}
 	command = dioList[1].getPWMPalseChangeCommand(values, 0);
+	dioList[1].sendCommand(command);
+	dioList[1].receiveCommand(command.length());
+	command = dioList[1].getPWMPalseChangeCommand(values, 1);
 	dioList[1].sendCommand(command);
 	dioList[1].receiveCommand(command.length());
 	//dioList[i].receiveCommand(24 * 9);

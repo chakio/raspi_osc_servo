@@ -119,7 +119,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList,in
   for (int i = 0; i < 12; i++) {
     a = 0;
     a += (branch == 0 ? 0 : 1) << 16;
-    a += (i % 12) << 12;
+    a += i  << 12;
     a += usecList[i+branch*12];
     std::string hex = toHex(a);
     result[0+i*9] = 'Q';
