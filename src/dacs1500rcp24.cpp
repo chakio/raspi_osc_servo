@@ -113,7 +113,7 @@ std::string Dacs1500rcp24::getPWMStopCommand() {
 */
 
 std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList,int branch) {
-  std::string result(usecList.size()/2*9, ' ');
+  std::string result(12*9, ' ');
   int c = 0;
   unsigned int a = 0;
   for (int i = 0; i < 12; i++) {
