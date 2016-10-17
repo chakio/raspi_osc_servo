@@ -47,13 +47,27 @@ void raspiTest::dioStart() {
 			//dioList[i].receiveCommand(24 * 9);
 		}
     }
-
     // start
     for(int i=0; i<DIO_NUM; i++) {
         command = dioList[i].getPWMStartCommand();
         dioList[i].sendCommand(command);
         dioList[i].receiveCommand(command.length());
     }
+	sleep(2);
+	// pwm init pos
+	for (int i = 0; i<DIO_NUM; i++) {
+		for (int j = 0; j < PWM_BRANCH_NUM; j++)
+		{
+			for (int k = 0; k < PWM_CHANNEL_NUM; k++) {
+				oscValues.push_back(500);
+				values.push_back(500);
+			}
+			command = dioList[i].getPWMPalseChangeCommand(values, j);
+			dioList[i].sendCommand(command);
+			dioList[i].receiveCommand(command.length());
+			//dioList[i].receiveCommand(24 * 9);
+		}
+	}
 }
 
 
