@@ -108,7 +108,7 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                         >> oscValues[16] >> oscValues[17] >> oscValues[18] >> oscValues[19]
                         >> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
                         >> osc::EndMessage;
-                for(int j=0; j<PWM_CHANNEL_NUM; j++) values[j] = (int)oscValues[j];
+                for(int j=0; j<PWM_CHANNEL_NUM*PWM_BRANCH_NUM; j++) values[j] = (int)oscValues[j];
                 command = dioList[0].getPWMPalseChangeCommand(values,0);
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
