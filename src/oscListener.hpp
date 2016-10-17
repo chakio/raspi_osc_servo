@@ -14,7 +14,8 @@
 
 
 #define PWM_CHANNEL_NUM 12
-#define DIO_NUM 1
+#define PWM_BRANCH_NUM 2
+#define DIO_NUM 2
 
 
 class raspiTest : public osc::OscPacketListener {
@@ -30,7 +31,7 @@ protected:
 private:
     std::vector<Dacs1500rcp24> dioList;
     std::string command;
-	std::vector<int> values;
+    std::vector<int> values;
     std::vector<osc::int32> oscValues;
 };
 

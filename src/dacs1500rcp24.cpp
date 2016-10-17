@@ -22,14 +22,14 @@ Dacs1500rcp24::~Dacs1500rcp24() {}
 
 void Dacs1500rcp24::open() {
   try {
-    if(FT_Open(intDeviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");//例外
-    if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");//例外
-    if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");//例外
-    std::cout << "open dacs1500rcp24 device." << std::endl;//通常
+    if(FT_Open(intDeviceID, &ftHandle) != FT_OK) throw("FT_Open Failed");
+    if(FT_ResetDevice(ftHandle) != FT_OK) throw("FT_ResetDevice Failed");
+    if(FT_SetTimeouts(ftHandle, 1000, 1000) != FT_OK) throw("FT_SetTimeouts Failed");
+    std::cout << "open dacs1500rcp24 device." << std::endl;
   }
   catch(char const *str) {
     FT_Close(ftHandle);
-    std::cout << "can't open dacs1500rcp24 device." << std::endl;//例外の場合
+    std::cout << "can't open dacs1500rcp24 device." << std::endl;
     std::cout << str << std::endl;
   }
 }
@@ -52,7 +52,6 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
   int data = 0;
   std::string result(18, ' ');
 
-  //ch0~11
   data += 1 << 23;
   data += pwmCountClockID << 20;
   data += 0 << 16;
@@ -62,15 +61,14 @@ std::string Dacs1500rcp24::getPWMInitializeCommand(int pwmCountClockID, int pwmP
   result[1] = charDeviceID;
   std::string hexcode = toHex(data);
   for (int i = 0; i < 6; i++) result[2 + i] = hexcode[i];
- /* result[8] = '&';
+  result[8] = 0x0D;
 
-  //ch12~23
   data = (data | (1 << 16));
 
   result[9] = 'Q';
   result[10] = charDeviceID;
   hexcode = toHex(data);
-  for (int i = 0; i < 6; i++) result[11 + i] = hexcode[i];*/
+  for (int i = 0; i < 6; i++) result[11 + i] = hexcode[i];
   result[17] = 0x0D;
 
   return result;
@@ -94,7 +92,7 @@ std::string Dacs1500rcp24::getPWMStopCommand() {
 
 
 std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
-	std::string result(9, ' ');
+  std::string result(9, ' ');
   int c = 0;
   unsigned int a = 0;
   a += (ch < 12 ? 0 : 1) << 16;
@@ -103,59 +101,39 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(int ch, int usec) {
   std::string hex = toHex(a);
   result[c++] = 'Q';
   result[c++] = charDeviceID;
-  for (int i = 0; i < 6; i++) result[2 + i] = hex[i];
-  result[8] = 0x0D;
+  result[c++] = hex[0];
+  result[c++] = hex[1];
+  result[c++] = hex[2];
+  result[c++] = hex[3];
+  result[c++] = hex[4];
+  result[c++] = hex[5];
+  result[c++] = 0x0D;
   return result;
 }
 
 
-std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList) {
-  std::string result(usecList.size() * 9, ' ');
-  
-	  int c = 0;
-	  unsigned int a = 0;
-	  for (int i = 0; i <  usecList.size(); i++) {
-		  a = 0;
-		  a += (i < 12 ? 0 : 1) << 16;
-		  a += (i % 12) << 12;
-		  a += usecList[i];
-		  std::string hex = toHex(a);
-		  result[c++] = 'Q';
-		  result[c++] = charDeviceID;
-		  result[c++] = hex[0];
-		  result[c++] = hex[1];
-		  result[c++] = hex[2];
-		  result[c++] = hex[3];
-		  result[c++] = hex[4];
-		  result[c++] = hex[5];
-		  result[c++] = '&';
-	  }
-	  result[c-1] = 0x0D;
-	  return result;
-  
-  /*else
-  {
-	  int c = 0;
-	  unsigned int a = 0;
-	  for (int i = 0; i < 12; i++) {
-		  a = 0;
-		  a += 1 << 16;
-		  a += (i % 12) << 12;
-		  a += (unsigned int)usecList[i];
-		  std::string hex = toHex(a);
-		  result[c++] = 'Q';
-		  result[c++] = charDeviceID;
-		  result[c++] = hex[0];
-		  result[c++] = hex[1];
-		  result[c++] = hex[2];
-		  result[c++] = hex[3];
-		  result[c++] = hex[4];
-		  result[c++] = hex[5];
-		  result[c++] = '&';
-	  }
-	  result[(12 * 9) - 1] = 0x0D;
-	  return result;
-  }*/
+std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList,int branch) {
+  std::string result(usecList.size()*9, ' ');
+  int c = 0;
+  unsigned int a = 0;
+  for (int i = 0; i < usecList.size(); i++) {
+    a = 0;
+    a += (branch == 0 ? 0 : 1) << 16;
+    a += (i % 12) << 12;
+    a += usecList[i];
+    std::string hex = toHex(a);
+    result[c++] = 'Q';
+    result[c++] = charDeviceID;
+    result[c++] = hex[0];
+    result[c++] = hex[1];
+    result[c++] = hex[2];
+    result[c++] = hex[3];
+    result[c++] = hex[4];
+    result[c++] = hex[5];
+    result[c++] = '&';
+  }
+  result[c - 1] = 0x0D;
+  return result;
 }
 
 
