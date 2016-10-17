@@ -113,7 +113,7 @@ std::string Dacs1500rcp24::getPWMStopCommand() {
 */
 
 std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList,int branch) {
-  std::string result(usecList.size()*9, ' ');
+  std::string result(usecList.size()/2*9, ' ');
   int c = 0;
   unsigned int a = 0;
   for (int i = 0; i < 12; i++) {
@@ -122,17 +122,17 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList,in
     a += (i % 12) << 12;
     a += usecList[i+branch*12];
     std::string hex = toHex(a);
-    result[c++] = 'Q';
-    result[c++] = charDeviceID;
-    result[c++] = hex[0];
-    result[c++] = hex[1];
-    result[c++] = hex[2];
-    result[c++] = hex[3];
-    result[c++] = hex[4];
-    result[c++] = hex[5];
-    result[c++] = '&';
+    result[0+i*9] = 'Q';
+    result[1 + i * 9] = charDeviceID;
+    result[2 + i * 9] = hex[0];
+    result[3 + i * 9] = hex[1];
+    result[4 + i * 9] = hex[2];
+    result[5 + i * 9] = hex[3];
+    result[6 + i * 9] = hex[4];
+    result[7 + i * 9] = hex[5];
+    result[8 + i * 9] = '&';
   }
-  result[c - 1] = 0x0D;
+  result[107] = 0x0D;
   return result;
 }
 
