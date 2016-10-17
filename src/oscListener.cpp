@@ -47,6 +47,12 @@ void raspiTest::dioStart() {
 			//dioList[i].receiveCommand(24 * 9);
 		}
     }
+
+	for (int i = 0; i<DIO_NUM; i++) {
+		command = dioList[i].getDigitalOutPutCommand("800000");
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
+	}
     // start
     for(int i=0; i<DIO_NUM; i++) {
         command = dioList[i].getPWMStartCommand();
@@ -68,6 +74,12 @@ void raspiTest::dioStart() {
 			//dioList[i].receiveCommand(24 * 9);
 		}
 	}
+	for (int i = 0; i<DIO_NUM; i++) {
+		command = dioList[i].getDigitalOutPutCommand("000000");
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
+	}
+	sleep(2);
 }
 
 
