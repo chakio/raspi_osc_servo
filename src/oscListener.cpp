@@ -61,10 +61,10 @@ void raspiTest::dioStart() {
     }
 	sleep(2);
 	// pwm init pos
-	for (int i = 0; i<DIO_NUM; i++) {
-		for (int j = 0; j < PWM_BRANCH_NUM; j++)
+	/*for (int i = 0; i<DIO_NUM; i++)//0or1 {
+		for (int j = 0; j < PWM_BRANCH_NUM; j++)//0or1
 		{
-			for (int k = 0; k < PWM_CHANNEL_NUM; k++) {
+			for (int k = 0; k < PWM_CHANNEL_NUM; k++) //0~12{
 				values[j * 12 + k] = 700;
 			}
 			command = dioList[i].getPWMPalseChangeCommand(values, j);
@@ -78,6 +78,43 @@ void raspiTest::dioStart() {
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
 	}
+	*/
+
+
+	
+	
+	for (int k = 0; k < PWM_CHANNEL_NUM; k++) //0~12
+	{
+	values[ k] = 700;
+	}
+	command = dioList[1].getPWMPalseChangeCommand(values, 1);
+	dioList[1].sendCommand(command);
+	dioList[1].receiveCommand(command.length());
+	//dioList[i].receiveCommand(24 * 9);
+	
+	
+	for (int i = 0; i<DIO_NUM; i++) {
+	command = dioList[i].getDigitalOutPutCommand("(800000");
+	dioList[i].sendCommand(command);
+	dioList[i].receiveCommand(command.length());
+	}
+
+	for (int k = 0; k < PWM_CHANNEL_NUM; k++) //0~12
+	{
+		values[k] = 1000;
+	}
+	command = dioList[1].getPWMPalseChangeCommand(values, 1);
+	dioList[1].sendCommand(command);
+	dioList[1].receiveCommand(command.length());
+	//dioList[i].receiveCommand(24 * 9);
+
+
+	for (int i = 0; i<DIO_NUM; i++) {
+		command = dioList[i].getDigitalOutPutCommand("000000");
+		dioList[i].sendCommand(command);
+		dioList[i].receiveCommand(command.length());
+	}
+	
 }
 
 
@@ -135,7 +172,7 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 				command = dioList[1].getPWMPalseChangeCommand(values, 1);
 				dioList[1].sendCommand(command);
 				dioList[1].receiveCommand(command.length());
-				//dioList[0].receiveCommand(24 * 9);
+			
             }
 
         } else if( strcmp( m.AddressPattern(), "/deviceC" ) == 0 ){
