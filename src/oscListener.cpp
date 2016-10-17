@@ -112,6 +112,9 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                 command = dioList[0].getPWMPalseChangeCommand(values,0);
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
+				command = dioList[0].getPWMPalseChangeCommand(values, 1);
+				dioList[0].sendCommand(command);
+				dioList[0].receiveCommand(command.length());
                 //dioList[0].receiveCommand(24 * 9);
             }
 
