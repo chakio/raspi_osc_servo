@@ -78,7 +78,6 @@ void raspiTest::dioStart() {
 		dioList[i].sendCommand(command);
 		dioList[i].receiveCommand(command.length());
 	}
-	sleep(2);
 }
 
 
