@@ -182,6 +182,7 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 				dioList[1].sendCommand(command);
 				dioList[1].receiveCommand(command.length());
 				std::cout << "/deviceB,value[12]=" << values[12] << std::endl;
+				std::cout <<command << std::endl;
             }
 
         } /*else if( strcmp( m.AddressPattern(), "/deviceC" ) == 0 ){
