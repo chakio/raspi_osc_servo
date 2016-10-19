@@ -152,12 +152,18 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                         >> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
                         >> osc::EndMessage;
                 for(int j=0; j<PWM_CHANNEL_NUM*PWM_BRANCH_NUM; j++) values[j] = (int)oscValues[j];
-				std::string command(108, ' ');
+				for (int j = 0; j < 108; j++)
+				{
+					command[j] = " ";
+				}
                 command = dioList[0].getPWMPalseChangeCommand(values,0);
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
 				std::cout << "/deviceA,value[0]=" << values[0] << std::endl;
-				std::string command(108, ' ');
+				for (int j = 0; j < 108; j++)
+				{
+					command[j] = " ";
+				}
 				command = dioList[0].getPWMPalseChangeCommand(values, 1);
 				dioList[0].sendCommand(command);
 				dioList[0].receiveCommand(command.length());
@@ -177,12 +183,18 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 					>> oscValues[20] >> oscValues[21] >> oscValues[22] >> oscValues[23]
 					>> osc::EndMessage;
 				for (int j = 0; j<PWM_CHANNEL_NUM*PWM_BRANCH_NUM; j++) values[j] = (int)oscValues[j];
-				std::string command(108, ' ');
+				for (int j = 0; j < 108; j++)
+				{
+					command[j] = " ";
+				}
 				command = dioList[1].getPWMPalseChangeCommand(values, 0);
 				dioList[1].sendCommand(command);
 				dioList[1].receiveCommand(command.length());
 				std::cout << "/deviceB,value[0]="<< values[0] << std::endl;
-				std::string command(108, ' ');
+				for (int j = 0; j < 108; j++)
+				{
+					command[j] = " ";
+				}
 				command = dioList[1].getPWMPalseChangeCommand(values, 1);
 				dioList[1].sendCommand(command);
 				dioList[1].receiveCommand(command.length());
