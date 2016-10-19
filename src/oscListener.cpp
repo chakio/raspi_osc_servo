@@ -155,9 +155,11 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
                 command = dioList[0].getPWMPalseChangeCommand(values,0);
                 dioList[0].sendCommand(command);
                 dioList[0].receiveCommand(command.length());
+				std::cout << "/deviceA,value[0]=" << values[0] << std::endl;
 				command = dioList[0].getPWMPalseChangeCommand(values, 1);
 				dioList[0].sendCommand(command);
 				dioList[0].receiveCommand(command.length());
+				std::cout << "/deviceA,value[12]=" << values[12] << std::endl;
                 //dioList[0].receiveCommand(24 * 9);
             }
 
@@ -175,10 +177,11 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 				command = dioList[1].getPWMPalseChangeCommand(values, 0);
 				dioList[1].sendCommand(command);
 				dioList[1].receiveCommand(command.length());
+				std::cout << "/deviceB,value[0]="<< values[0] << std::endl;
 				command = dioList[1].getPWMPalseChangeCommand(values, 1);
 				dioList[1].sendCommand(command);
 				dioList[1].receiveCommand(command.length());
-			
+				std::cout << "/deviceB,value[12]=" << values[12] << std::endl;
             }
 
         } /*else if( strcmp( m.AddressPattern(), "/deviceC" ) == 0 ){
