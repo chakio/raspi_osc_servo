@@ -23,14 +23,14 @@ class raspiTest : public osc::OscPacketListener {
 public:
     void dioStart();
     void dioStop();
-
+	std::string command;
 protected:
     virtual void ProcessMessage( const osc::ReceivedMessage& m,
                                  const IpEndpointName& remoteEndpoint );
 
 private:
     std::vector<Dacs1500rcp24> dioList;
-    std::string command;
+    
     std::vector<int> values;
     std::vector<osc::int32> oscValues;
 };
