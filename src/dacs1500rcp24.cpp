@@ -133,7 +133,7 @@ std::string Dacs1500rcp24::getPWMPalseChangeCommand(std::vector<int> usecList,in
     result[7 + i * 9] = hex[5];
     result[8 + i * 9] = '&';
   }
-  result[107] = 0x0D;
+  //result[107] = 0x0D;
   return result;
 }
 
