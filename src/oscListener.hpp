@@ -23,7 +23,7 @@ class raspiTest : public osc::OscPacketListener {
 public:
     void dioStart();
     void dioStop();
-	std::string command(108, ' ');
+	std::string command;
 protected:
     virtual void ProcessMessage( const osc::ReceivedMessage& m,
                                  const IpEndpointName& remoteEndpoint );
