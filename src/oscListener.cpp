@@ -160,6 +160,7 @@ void raspiTest::ProcessMessage( const osc::ReceivedMessage& m,
 				dioList[0].sendCommand(command);
 				dioList[0].receiveCommand(command.length());
 				std::cout << "/deviceA,value[12]=" << values[12] << std::endl;
+				std::cout << command << std::endl;
                 //dioList[0].receiveCommand(24 * 9);
             }
 
